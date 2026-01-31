@@ -185,23 +185,19 @@
 <body>
   <div class="container">
     <div class="avatar-panel">
-      <h1>🦘 Kangaroo Avatar</h1>
+      <h1>🦘 niche kangaroo</h1>
       <img id="avatarImg" 
-           src="https://tr.rbxcdn.com/avatar-headshot?userId=9942268162&size=420x420" 
-           alt="Kangaroo Avatar">
+           src="roo.png">
       <br><br>
       <button class="play-btn" onclick="joinGame()">
-        🎮 Copy This Outfit
+        get tuff outfit
       </button>
-      <div style="margin-top: 15px; font-size: 13px; color: #a0a8c8;">
-        User ID: 9942268162
-      </div>
     </div>
 
     <div class="items-panel">
-      <h2>Currently Wearing</h2>
+      <h2>items</h2>
       <div id="itemsContent" class="loading">
-        🔄 Loading Kangaroo items...
+        loading items...
       </div>
     </div>
   </div>
@@ -215,7 +211,7 @@
     async function loadAvatarShop() {
       const content = document.getElementById('itemsContent');
       try {
-        content.textContent = '📡 Fetching avatar data...';
+        content.textContent = 'fetching...';
         
         // 1. Get avatar assets (your proxy ✅)
         const avatarRes = await fetch(`${PROXY_BASE}/avatar/${ROBLOX_USER_ID}`);
