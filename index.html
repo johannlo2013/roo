@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kangaroo Avatar Shop</title>
+  <title>🦘 Kangaroo Avatar Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    * { box-sizing: border-box; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: system-ui, sans-serif;
-      background: linear-gradient(135deg, #0c0c1a 0%, #1a1a2e 100%);
-      color: #f0f0f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+      color: #f8f9ff;
       min-height: 100vh;
       padding: 20px;
       display: flex;
@@ -18,207 +18,296 @@
     }
     .container {
       display: flex;
-      gap: 30px;
-      max-width: 1200px;
+      gap: 32px;
+      max-width: 1300px;
       width: 100%;
     }
-    .avatar-section {
-      flex: 0 0 380px;
-      background: rgba(20, 25, 40, 0.95);
-      border-radius: 20px;
-      padding: 25px;
+    .avatar-panel {
+      flex: 0 0 400px;
+      background: rgba(20, 25, 45, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 30px;
       text-align: center;
-      border: 1px solid rgba(255,255,255,0.1);
     }
-    .avatar-section h1 {
-      font-size: 22px;
+    .avatar-panel h1 {
+      font-size: 24px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      font-weight: 700;
     }
     #avatarImg {
       width: 100%;
-      height: 400px;
+      height: 420px;
       object-fit: cover;
-      border-radius: 16px;
+      border-radius: 20px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       border: 2px solid rgba(255,255,255,0.15);
+      background: linear-gradient(45deg, #2a2a45, #3a3a60);
     }
-    #avatarImg:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(102,126,234,0.3); }
+    #avatarImg:hover {
+      transform: scale(1.03) rotate(1deg);
+      box-shadow: 0 30px 60px rgba(102,126,234,0.3);
+      border-color: rgba(102,126,234,0.4);
+    }
     .play-btn {
-      margin-top: 15px;
-      padding: 12px 24px;
+      margin-top: 20px;
+      padding: 14px 28px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
-      border-radius: 25px;
+      border-radius: 50px;
       font-weight: 600;
+      font-size: 16px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(102,126,234,0.3);
     }
-    .play-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102,126,234,0.4); }
-    .items-section {
+    .play-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102,126,234,0.4);
+    }
+    .items-panel {
       flex: 1;
-      background: rgba(20, 25, 40, 0.95);
-      border-radius: 20px;
-      padding: 25px;
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(20, 25, 45, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 30px;
+      max-height: 700px;
     }
-    .items-section h2 { margin-bottom: 20px; font-size: 20px; }
-    .loading { color: #888; text-align: center; padding: 40px; }
+    .items-panel h2 {
+      font-size: 22px;
+      margin-bottom: 24px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .loading {
+      color: #888;
+      text-align: center;
+      padding: 60px 20px;
+      font-style: italic;
+    }
     .item-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 15px;
-      max-height: 500px;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 20px;
+      max-height: 580px;
       overflow-y: auto;
       padding-right: 10px;
     }
+    .item-grid::-webkit-scrollbar {
+      width: 8px;
+    }
+    .item-grid::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+    }
+    .item-grid::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
     .item-card {
-      background: rgba(40, 45, 65, 0.8);
-      border-radius: 12px;
-      padding: 15px;
-      cursor: pointer;
-      transition: all 0.3s;
+      display: block;
       text-decoration: none;
       color: inherit;
+      background: rgba(40, 45, 70, 0.8);
       border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 18px 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .item-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
     }
     .item-card:hover {
-      background: rgba(60, 65, 85, 0.9);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      background: rgba(60, 70, 95, 0.95);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+      border-color: rgba(102,126,234,0.3);
+    }
+    .item-card:hover::before {
+      left: 100%;
     }
     .item-thumb {
-      width: 100%; height: 80px;
+      width: 100%;
+      height: 85px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      background: #2a2a3a;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #2a2a40, #3a3a55);
     }
     .item-name {
-      font-size: 13px; font-weight: 600;
-      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
       line-height: 1.3;
+      color: #ffffff;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
     .item-type {
-      font-size: 11px; color: #a0a8c0;
+      font-size: 11px;
+      color: #a0a8c8;
+      font-weight: 500;
     }
     .error {
       color: #ff6b6b;
       text-align: center;
-      padding: 40px;
+      padding: 60px 20px;
       background: rgba(255,107,107,0.1);
-      border-radius: 12px;
       border: 1px solid rgba(255,107,107,0.3);
+      border-radius: 16px;
+      font-size: 15px;
     }
     @media (max-width: 768px) {
-      .container { flex-direction: column; }
-      .item-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+      .container { flex-direction: column; gap: 24px; padding: 10px; }
+      .item-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .avatar-panel, .items-panel { padding: 20px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="avatar-section">
+    <div class="avatar-panel">
       <h1>🦘 Kangaroo Avatar</h1>
       <img id="avatarImg" 
            src="https://tr.rbxcdn.com/avatar-headshot?userId=9942268162&size=420x420" 
            alt="Kangaroo Avatar">
-      <br>
+      <br><br>
       <button class="play-btn" onclick="joinGame()">
         🎮 Copy This Outfit
       </button>
+      <div style="margin-top: 15px; font-size: 13px; color: #a0a8c8;">
+        User ID: 9942268162
+      </div>
     </div>
 
-    <div class="items-section">
-      <h2>Wearing (10 items)</h2>
-      <div id="itemsContent" class="loading">Loading...</div>
+    <div class="items-panel">
+      <h2>Currently Wearing</h2>
+      <div id="itemsContent" class="loading">
+        🔄 Loading Kangaroo items...
+      </div>
     </div>
   </div>
 
   <script>
-    // === CONFIG (YOUR ENDPOINT!) ===
+    // === CONFIG ===
     const PROXY_BASE = "https://api.thesunbeaming.co";
     const ROBLOX_USER_ID = 9942268162;
-    const GAME_PLACE_ID = "YOUR_PLACE_ID"; // From Roblox Studio
+    const GAME_PLACE_ID = "YOUR_PLACE_ID_HERE"; // Replace with your Roblox place ID
 
-    async function loadAvatar() {
+    async function loadAvatarShop() {
+      const content = document.getElementById('itemsContent');
       try {
-        document.getElementById('itemsContent').textContent = 'Fetching avatar...';
+        content.textContent = '📡 Fetching avatar data...';
         
-        // 1. Get avatar data (✅ already working)
-        const avatarData = await fetch(`${PROXY_BASE}/avatar/${ROBLOX_USER_ID}`).then(r => r.json());
+        // 1. Get avatar assets (your proxy ✅)
+        const avatarRes = await fetch(`${PROXY_BASE}/avatar/${ROBLOX_USER_ID}`);
+        const avatarData = await avatarRes.json();
         const assets = avatarData.assets || [];
         
-        // 2. Get ALL details via YOUR proxy (no more Roblox CORS!)
+        if (!assets.length) {
+          content.innerHTML = '<div class="error">No items found on this avatar</div>';
+          return;
+        }
+
+        content.textContent = `📦 Loading ${assets.length} item details...`;
+        
+        // 2. Get catalog + thumbnails via YOUR proxy (no CORS!)
         const assetIds = assets.map(a => a.id).join(',');
         const [catalogRes, thumbRes] = await Promise.all([
           fetch(`${PROXY_BASE}/catalog/${assetIds}`).then(r => r.json()),
           fetch(`${PROXY_BASE}/thumbnails/${assetIds}`).then(r => r.json())
         ]);
 
-        // 3. Build item list
+        // 3. Build final item list
         const thumbMap = {};
-        (thumbRes.data || []).forEach(t => thumbMap[t.targetId] = t.imageUrl);
+        (thumbRes.data || []).forEach(t => {
+          thumbMap[t.targetId] = t.imageUrl;
+        });
 
-        const items = assets.map(asset => {
-          const catalogItem = (catalogRes.data || []).find(i => i.id == asset.id);
-          return {
-            id: asset.id,
-            name: catalogItem?.Name || asset.name || `Item ${asset.id}`,
-            type: asset.assetType?.name || 'Unknown',
-            thumb: thumbMap[asset.id] || 'https://tr.rbxcdn.com/empty-150x150.png',
-            url: `https://www.roblox.com/catalog/${asset.id}`
-          };
-        }).filter(i => i.id && i.name);
+        const items = assets
+          .map(asset => {
+            const catalogItem = (catalogRes.data || []).find(i => i.id == asset.id);
+            return {
+              id: asset.id,
+              name: catalogItem?.Name || asset.name || `Asset ${asset.id}`,
+              type: asset.assetType?.name || 'Unknown',
+              thumb: thumbMap[asset.id] || 'https://tr.rbxcdn.com/empty-150x150.png',
+              url: `https://www.roblox.com/catalog/${asset.id}`
+            };
+          })
+          .filter(item => item.id && item.name && item.name.length > 1);
 
         renderItems(items);
+        
       } catch (error) {
-        console.error('Load failed:', error);
-        document.getElementById('itemsContent').innerHTML = 
-          '<div class="error">Failed to load items. Check proxy endpoints.</div>';
+        console.error('Shop load error:', error);
+        content.innerHTML = `
+          <div class="error">
+            ❌ Failed to load items<br>
+            <small>Check proxy endpoints: /avatar, /catalog, /thumbnails</small>
+          </div>
+        `;
       }
     }
 
     function renderItems(items) {
       const container = document.getElementById('itemsContent');
+      
       if (!items.length) {
-        container.innerHTML = '<div class="error">No items found</div>';
+        container.innerHTML = '<div class="error">No wearable items found 🕵️</div>';
         return;
       }
 
       container.innerHTML = `
-        <div class="item-grid" style="max-height:500px;overflow-y:auto;">
+        <div class="item-grid">
           ${items.map(item => `
-            <a href="${item.url}" target="_blank" class="item-card">
-              <img src="${item.thumb}" class="item-thumb" alt="${item.name}">
+            <a href="${item.url}" target="_blank" rel="noopener" class="item-card" title="${item.name}">
+              <img src="${item.thumb}" alt="${item.name}" class="item-thumb" loading="lazy">
               <div class="item-name">${item.name}</div>
               <div class="item-type">${item.type}</div>
             </a>
           `).join('')}
         </div>
+        <div style="text-align:center;margin-top:20px;color:#888;font-size:13px;">
+          Click items to view on Roblox Catalog
+        </div>
       `;
     }
 
     function joinGame() {
+      if (GAME_PLACE_ID === "YOUR_PLACE_ID_HERE") {
+        alert("Please set your Roblox GAME_PLACE_ID in the script!");
+        return;
+      }
       window.open(`https://www.roblox.com/games/${GAME_PLACE_ID}`, '_blank');
     }
 
-    // Auto-load on page ready
+    // Initialize
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', loadAvatar);
+      document.addEventListener('DOMContentLoaded', loadAvatarShop);
     } else {
-      loadAvatar();
+      loadAvatarShop();
     }
 
-    // Avatar click → game
+    // Avatar click handler
     document.getElementById('avatarImg').addEventListener('click', joinGame);
   </script>
 </body>
